@@ -1,0 +1,11 @@
+flowchart TD
+    A[Load songs from data/songs.csv] --> B[Convert each song to a feature vector]
+    U[User profile / preferences] --> C[Convert profile to a target vector]
+    B --> N[Normalize features to 0-1<br/>rescale tempo BPM]
+    C --> N
+    N --> D[Euclidean distance: target vs each song]
+    D --> E[Similarity = 1 - distance / max distance]
+    E --> F[Add bonuses:<br/>genre match, mood match, acoustic preference]
+    F --> G[Sort by score, highest first<br/>tie-break on title]
+    G --> H[Take top K]
+    H --> I[Show ranked recommendations + reasons]
